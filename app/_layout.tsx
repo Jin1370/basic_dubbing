@@ -18,7 +18,7 @@ export default function RootLayout() {
   useEffect(() => {
     const unsubscribe = initialize();
     return unsubscribe;
-  }, []);
+  }, [initialize]);
 
   // 인증 상태에 따라 적절한 그룹으로 리다이렉트
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function RootLayout() {
     } else if (session && inAuthGroup) {
       router.replace('/(main)');
     }
-  }, [session, loading, segments]);
+  }, [session, loading, segments, router]);
 
   if (loading) {
     return (

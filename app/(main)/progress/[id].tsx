@@ -2,7 +2,7 @@
 // 더빙 진행 상태 화면 — 폴링으로 상태 업데이트
 // ============================================================
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -30,7 +30,7 @@ export default function ProgressScreen() {
   const [error, setError] = useState<string | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const startPolling = () => {
+  const startPolling = useCallback(() => {
     if (intervalRef.current) return;
 
     const poll = async () => {
@@ -56,7 +56,7 @@ export default function ProgressScreen() {
 
     poll(); // 즉시 한 번 호출
     intervalRef.current = setInterval(poll, POLL_INTERVAL_MS);
-  };
+  }, [id, router]);
 
   const stopPolling = () => {
     if (intervalRef.current) {
@@ -81,7 +81,7 @@ export default function ProgressScreen() {
       stopPolling();
       subscription.remove();
     };
-  }, [id]);
+  }, [id, startPolling]);
 
   const handleGoHome = () => {
     stopPolling();

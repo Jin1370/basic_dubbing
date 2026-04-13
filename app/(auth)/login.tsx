@@ -10,7 +10,6 @@ import {
   StyleSheet,
   Alert,
   SafeAreaView,
-  Image,
 } from 'react-native';
 import { signInWithGoogle } from '../../lib/auth';
 import { colors } from '../../constants/theme';

@@ -2,7 +2,7 @@
 // 결과 확인 / 다운로드 화면
 // ============================================================
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -43,11 +43,7 @@ export default function ResultScreen() {
   const [activeTab, setActiveTab] = useState<TabType>('dubbed');
   const [downloading, setDownloading] = useState(false);
 
-  useEffect(() => {
-    loadDetail();
-  }, [id]);
-
-  const loadDetail = async () => {
+  const loadDetail = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -59,7 +55,11 @@ export default function ResultScreen() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    loadDetail();
+  }, [loadDetail]);
 
   const handleDownload = async () => {
     setDownloading(true);

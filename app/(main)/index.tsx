@@ -26,7 +26,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     loadItems();
-  }, []);
+  }, [loadItems]);
 
   const handleNewDubbing = useCallback(() => {
     useDubbingStore.getState().resetDubbingFlow();
