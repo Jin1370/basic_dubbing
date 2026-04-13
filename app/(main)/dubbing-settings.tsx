@@ -18,6 +18,7 @@ import { useDubbingStore } from '../../lib/store';
 import { uploadVideo, createDubbing } from '../../lib/api';
 import { LANGUAGE_LABELS } from '../../lib/types';
 import LanguageSelector from '../../components/LanguageSelector';
+import { colors } from '../../constants/theme';
 
 function formatDuration(seconds: number): string {
   const m = Math.floor(seconds / 60);
@@ -151,7 +152,7 @@ export default function DubbingSettingsScreen() {
           accessibilityLabel="더빙 시작"
         >
           {submitting ? (
-            <ActivityIndicator color="#FFFFFF" size="small" />
+            <ActivityIndicator color={colors.white} size="small" />
           ) : (
             <Text style={styles.startButtonText}>더빙 시작</Text>
           )}
@@ -164,7 +165,7 @@ export default function DubbingSettingsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
   },
   header: {
     flexDirection: 'row',
@@ -180,7 +181,7 @@ const styles = StyleSheet.create({
   },
   backIcon: {
     fontSize: 22,
-    color: '#0F172A',
+    color: colors.slate900,
     fontWeight: '600',
   },
   headerTitle: {
@@ -188,7 +189,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '600',
     lineHeight: 28,
-    color: '#0F172A',
+    color: colors.slate900,
     textAlign: 'center',
   },
   content: {
@@ -204,7 +205,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 8,
-    backgroundColor: '#F8FAFC',
+    backgroundColor: colors.slate50,
   },
   videoInfo: {
     marginLeft: 12,
@@ -213,32 +214,32 @@ const styles = StyleSheet.create({
   videoName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#0F172A',
+    color: colors.slate900,
   },
   videoDuration: {
     fontSize: 13,
-    color: '#64748B',
+    color: colors.slate500,
     marginTop: 2,
   },
   divider: {
     height: 1,
-    backgroundColor: '#E2E8F0',
+    backgroundColor: colors.slate200,
     marginBottom: 24,
   },
   label: {
     fontSize: 16,
     fontWeight: '600',
     lineHeight: 24,
-    color: '#0F172A',
+    color: colors.slate900,
     marginBottom: 8,
   },
   swapButton: {
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: '#F8FAFC',
+    backgroundColor: colors.slate50,
     borderWidth: 1,
-    borderColor: '#E2E8F0',
+    borderColor: colors.slate200,
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
@@ -246,11 +247,11 @@ const styles = StyleSheet.create({
   },
   swapIcon: {
     fontSize: 20,
-    color: '#475569',
+    color: colors.slate600,
   },
   supportedHint: {
     fontSize: 13,
-    color: '#64748B',
+    color: colors.slate500,
     marginTop: 16,
   },
   bottomBar: {
@@ -259,17 +260,17 @@ const styles = StyleSheet.create({
   },
   startButton: {
     height: 48,
-    backgroundColor: '#2563EB',
+    backgroundColor: colors.primary,
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
   },
   startButtonDisabled: {
-    backgroundColor: '#94A3B8',
+    backgroundColor: colors.slate400,
   },
   startButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: colors.white,
   },
 });

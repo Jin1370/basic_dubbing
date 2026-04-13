@@ -3,6 +3,7 @@
 // ============================================================
 
 import { View, StyleSheet } from 'react-native';
+import { colors } from '../constants/theme';
 
 interface ProgressBarProps {
   /** 0 ~ 100 */
@@ -28,13 +29,13 @@ const styles = StyleSheet.create({
   track: {
     width: '100%',
     height: 8,
-    backgroundColor: '#E2E8F0',
+    backgroundColor: colors.slate200,
     borderRadius: 4,
     overflow: 'hidden',
   },
   fill: {
     height: '100%',
-    backgroundColor: '#2563EB',
+    backgroundColor: colors.primary,
     borderRadius: 4,
   },
 });

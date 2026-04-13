@@ -19,6 +19,7 @@ import { fetchDubbingDetail, fetchDownloadUrl } from '../../../lib/api';
 import { LANGUAGE_LABELS } from '../../../lib/types';
 import type { DubbingDetail } from '../../../lib/types';
 import VideoPlayer from '../../../components/VideoPlayer';
+import { colors } from '../../../constants/theme';
 
 function formatFileSize(bytes: number): string {
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)}KB`;
@@ -81,7 +82,7 @@ export default function ResultScreen() {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.loaderContainer}>
-          <ActivityIndicator size="large" color="#2563EB" />
+          <ActivityIndicator size="large" color={colors.primary} />
         </View>
       </SafeAreaView>
     );
@@ -178,7 +179,7 @@ export default function ResultScreen() {
           accessibilityLabel="더빙 영상 다운로드"
         >
           {downloading ? (
-            <ActivityIndicator color="#FFFFFF" size="small" />
+            <ActivityIndicator color={colors.white} size="small" />
           ) : (
             <Text style={styles.downloadButtonText}>다운로드</Text>
           )}
@@ -209,7 +210,7 @@ function InfoRow({ label, value }: { label: string; value: string }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
   },
   loaderContainer: {
     flex: 1,
@@ -230,7 +231,7 @@ const styles = StyleSheet.create({
   },
   backIcon: {
     fontSize: 22,
-    color: '#0F172A',
+    color: colors.slate900,
     fontWeight: '600',
   },
   headerTitle: {
@@ -238,7 +239,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '600',
     lineHeight: 28,
-    color: '#0F172A',
+    color: colors.slate900,
     textAlign: 'center',
   },
   scrollContent: {
@@ -247,7 +248,7 @@ const styles = StyleSheet.create({
   },
   tabContainer: {
     flexDirection: 'row',
-    backgroundColor: '#F1F5F9',
+    backgroundColor: colors.slate100,
     borderRadius: 10,
     padding: 4,
     marginTop: 16,
@@ -261,7 +262,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   tabActive: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
     shadowColor: 'rgba(0,0,0,0.06)',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 1,
@@ -271,10 +272,10 @@ const styles = StyleSheet.create({
   tabText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#64748B',
+    color: colors.slate500,
   },
   tabTextActive: {
-    color: '#0F172A',
+    color: colors.slate900,
   },
   infoSection: {
     marginBottom: 16,
@@ -286,11 +287,11 @@ const styles = StyleSheet.create({
   },
   infoLabel: {
     fontSize: 13,
-    color: '#64748B',
+    color: colors.slate500,
   },
   infoValue: {
     fontSize: 13,
-    color: '#0F172A',
+    color: colors.slate900,
     fontWeight: '500',
   },
   errorContainer: {
@@ -301,14 +302,14 @@ const styles = StyleSheet.create({
   },
   errorText: {
     fontSize: 16,
-    color: '#EF4444',
+    color: colors.error,
     textAlign: 'center',
     marginBottom: 12,
   },
   retryText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#2563EB',
+    color: colors.primary,
   },
   bottomBar: {
     paddingHorizontal: 24,
@@ -317,31 +318,31 @@ const styles = StyleSheet.create({
   },
   downloadButton: {
     height: 48,
-    backgroundColor: '#2563EB',
+    backgroundColor: colors.primary,
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
   },
   downloadButtonDisabled: {
-    backgroundColor: '#94A3B8',
+    backgroundColor: colors.slate400,
   },
   downloadButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: colors.white,
   },
   newDubbingButton: {
     height: 48,
     borderRadius: 12,
     borderWidth: 1.5,
-    borderColor: '#2563EB',
-    backgroundColor: '#FFFFFF',
+    borderColor: colors.primary,
+    backgroundColor: colors.white,
     justifyContent: 'center',
     alignItems: 'center',
   },
   newDubbingButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#2563EB',
+    color: colors.primary,
   },
 });

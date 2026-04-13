@@ -5,6 +5,7 @@
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import type { DubbingItem, DubbingStatus } from '../lib/types';
 import { LANGUAGE_LABELS } from '../lib/types';
+import { colors } from '../constants/theme';
 
 interface VideoCardProps {
   item: DubbingItem;
@@ -12,10 +13,10 @@ interface VideoCardProps {
 }
 
 const STATUS_CONFIG: Record<DubbingStatus, { label: string; bg: string; text: string }> = {
-  completed: { label: '완료', bg: '#F0FDF4', text: '#22C55E' },
-  processing: { label: '처리중', bg: '#FFF7ED', text: '#F59E0B' },
-  uploading: { label: '업로드중', bg: '#FFF7ED', text: '#F59E0B' },
-  failed: { label: '실패', bg: '#FEF2F2', text: '#EF4444' },
+  completed: { label: '완료', bg: colors.successBg, text: colors.success },
+  processing: { label: '처리중', bg: colors.warningBg, text: colors.warning },
+  uploading: { label: '업로드중', bg: colors.warningBg, text: colors.warning },
+  failed: { label: '실패', bg: colors.errorBg, text: colors.error },
 };
 
 function formatDate(iso: string): string {
@@ -65,9 +66,9 @@ export default function VideoCard({ item, onPress }: VideoCardProps) {
 const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
     borderWidth: 1,
-    borderColor: '#E2E8F0',
+    borderColor: colors.slate200,
     borderRadius: 12,
     padding: 16,
     shadowColor: 'rgba(0,0,0,0.06)',
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   thumbnailPlaceholder: {
-    backgroundColor: '#F8FAFC',
+    backgroundColor: colors.slate50,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -98,11 +99,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     lineHeight: 24,
-    color: '#0F172A',
+    color: colors.slate900,
   },
   languages: {
     fontSize: 13,
-    color: '#64748B',
+    color: colors.slate500,
     lineHeight: 18,
     marginTop: 2,
   },
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
   },
   date: {
     fontSize: 13,
-    color: '#64748B',
+    color: colors.slate500,
     marginRight: 8,
   },
   badge: {

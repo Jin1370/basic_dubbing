@@ -15,6 +15,7 @@ import {
 import { useRouter } from 'expo-router';
 import * as ImagePicker from 'expo-image-picker';
 import { useDubbingStore } from '../../lib/store';
+import { colors } from '../../constants/theme';
 
 /** 바이트를 읽기 좋은 형식으로 변환 */
 function formatFileSize(bytes: number): string {
@@ -164,7 +165,7 @@ export default function UploadScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
   },
   header: {
     flexDirection: 'row',
@@ -180,7 +181,7 @@ const styles = StyleSheet.create({
   },
   backIcon: {
     fontSize: 22,
-    color: '#0F172A',
+    color: colors.slate900,
     fontWeight: '600',
   },
   headerTitle: {
@@ -188,7 +189,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '600',
     lineHeight: 28,
-    color: '#0F172A',
+    color: colors.slate900,
     textAlign: 'center',
   },
   content: {
@@ -198,7 +199,7 @@ const styles = StyleSheet.create({
   },
   uploadArea: {
     borderWidth: 1.5,
-    borderColor: '#E2E8F0',
+    borderColor: colors.slate200,
     borderStyle: 'dashed',
     borderRadius: 12,
     padding: 32,
@@ -210,13 +211,13 @@ const styles = StyleSheet.create({
   },
   uploadText: {
     fontSize: 16,
-    color: '#0F172A',
+    color: colors.slate900,
     marginBottom: 24,
   },
   selectButton: {
     height: 48,
     paddingHorizontal: 24,
-    backgroundColor: '#2563EB',
+    backgroundColor: colors.primary,
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
@@ -224,14 +225,14 @@ const styles = StyleSheet.create({
   selectButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: colors.white,
   },
   previewContainer: {
     width: '100%',
     aspectRatio: 16 / 9,
     borderRadius: 12,
     overflow: 'hidden',
-    backgroundColor: '#F8FAFC',
+    backgroundColor: colors.slate50,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -250,7 +251,7 @@ const styles = StyleSheet.create({
   },
   playIcon: {
     fontSize: 22,
-    color: '#FFFFFF',
+    color: colors.white,
     marginLeft: 4,
   },
   fileInfo: {
@@ -262,11 +263,11 @@ const styles = StyleSheet.create({
   fileName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#0F172A',
+    color: colors.slate900,
   },
   fileMeta: {
     fontSize: 13,
-    color: '#64748B',
+    color: colors.slate500,
   },
   reselectButton: {
     marginTop: 12,
@@ -275,11 +276,11 @@ const styles = StyleSheet.create({
   reselectText: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#2563EB',
+    color: colors.primary,
   },
   formatHint: {
     fontSize: 13,
-    color: '#64748B',
+    color: colors.slate500,
     textAlign: 'center',
     marginTop: 24,
   },
@@ -289,7 +290,7 @@ const styles = StyleSheet.create({
   },
   nextButton: {
     height: 48,
-    backgroundColor: '#2563EB',
+    backgroundColor: colors.primary,
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
@@ -297,6 +298,6 @@ const styles = StyleSheet.create({
   nextButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: colors.white,
   },
 });
