@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+*.jks
+*.p8
+*.p12
+*.mobileprovision
+
+# Python
+server/__pycache__/
+server/**/__pycache__/
+*.pyc
+server/.env
+
+# Environment
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Ralph Loop (로그/heartbeat만 제외, JOURNAL/STATE/BACKLOG는 포함)
+.ralph/logs/
+.ralph/heartbeat
