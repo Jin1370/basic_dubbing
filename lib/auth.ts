@@ -3,21 +3,29 @@
 // ============================================================
 
 import { createClient, Session } from '@supabase/supabase-js';
-import * as AuthSession from 'expo-auth-session';
+import { Platform } from 'react-native';
+import * as Linking from 'expo-linking';
 import Constants from 'expo-constants';
 
 const SUPABASE_URL = Constants.expoConfig?.extra?.supabaseUrl ?? '';
 const SUPABASE_ANON_KEY = Constants.expoConfig?.extra?.supabaseAnonKey ?? '';
 
-export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+  auth: {
+    detectSessionInUrl: true,
+    persistSession: true,
+  },
+});
 
 /**
  * Google OAuth 로그인을 시작한다.
- * Supabase Auth의 signInWithOAuth를 사용하며,
- * 모바일 환경에서는 redirectTo를 Expo AuthSession redirect URI로 설정한다.
+ * 웹에서는 현재 URL로 리다이렉트, 모바일에서는 Expo 딥링크로 리다이렉트한다.
  */
 export async function signInWithGoogle(): Promise<void> {
-  const redirectTo = AuthSession.makeRedirectUri();
+  const redirectTo =
+    Platform.OS === 'web'
+      ? window.location.origin
+      : Linking.createURL('/');
 
   const { error } = await supabase.auth.signInWithOAuth({
     provider: 'google',

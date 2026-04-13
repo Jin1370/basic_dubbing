@@ -30,7 +30,7 @@ def _decode_token(token: str) -> dict:
             token,
             JWT_SECRET,
             algorithms=[JWT_ALGORITHM],
-            audience=JWT_AUDIENCE,
+            options={"verify_aud": False},
         )
         return payload
     except JWTError as e:

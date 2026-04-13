@@ -2,10 +2,17 @@
 // 메인 그룹 레이아웃 (인증된 사용자)
 // ============================================================
 
-import { Stack } from 'expo-router';
+import { Redirect, Stack } from 'expo-router';
+import { useAuthStore } from '../../lib/store';
 import { colors } from '../../constants/theme';
 
 export default function MainLayout() {
+  const session = useAuthStore((s) => s.session);
+
+  if (!session) {
+    return <Redirect href="/(auth)/login" />;
+  }
+
   return (
     <Stack
       screenOptions={{

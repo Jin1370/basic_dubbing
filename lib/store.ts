@@ -5,7 +5,7 @@
 import { create } from 'zustand';
 import { Session } from '@supabase/supabase-js';
 import { supabase } from './auth';
-import { fetchDubbingList, fetchProfile } from './api';
+import { fetchDubbingList } from './api';
 import type { DubbingItem, LanguageCode, UserProfile } from './types';
 
 // --------------- Auth Store ---------------
@@ -27,10 +27,18 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   setSession: (session) => set({ session, loading: false }),
 
   loadProfile: async () => {
-    try {
-      const profile = await fetchProfile();
-      set({ profile });
-    } catch {
+    // Supabase 세션에서 직접 프로필 정보를 가져온다 (백엔드 불필요)
+    const { data } = await supabase.auth.getUser();
+    if (data.user) {
+      set({
+        profile: {
+          id: data.user.id,
+          email: data.user.email ?? '',
+          display_name: data.user.user_metadata?.full_name ?? data.user.email ?? '',
+          avatar_url: data.user.user_metadata?.avatar_url ?? null,
+        },
+      });
+    } else {
       set({ profile: null });
     }
   },
