@@ -5,6 +5,7 @@
 import { useRef, useState } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { Video, ResizeMode, AVPlaybackStatus } from 'expo-av';
+import { colors } from '../constants/theme';
 
 interface VideoPlayerProps {
   uri: string;
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
     aspectRatio: 16 / 9,
     borderRadius: 12,
     overflow: 'hidden',
-    backgroundColor: '#000000',
+    backgroundColor: colors.black,
   },
   video: {
     width: '100%',
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
   },
   playIcon: {
     fontSize: 22,
-    color: '#FFFFFF',
+    color: colors.white,
     marginLeft: 4,
   },
   seekBarContainer: {
@@ -123,18 +124,18 @@ const styles = StyleSheet.create({
   seekTrack: {
     flex: 1,
     height: 4,
-    backgroundColor: '#E2E8F0',
+    backgroundColor: colors.slate200,
     borderRadius: 2,
     overflow: 'hidden',
   },
   seekFill: {
     height: '100%',
-    backgroundColor: '#2563EB',
+    backgroundColor: colors.primary,
     borderRadius: 2,
   },
   timeText: {
     fontSize: 13,
-    color: '#64748B',
+    color: colors.slate500,
     marginLeft: 8,
     minWidth: 80,
     textAlign: 'right',

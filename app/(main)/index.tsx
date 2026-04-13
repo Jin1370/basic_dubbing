@@ -17,6 +17,7 @@ import {
 import { useRouter } from 'expo-router';
 import { useAuthStore, useDubbingStore } from '../../lib/store';
 import VideoCard from '../../components/VideoCard';
+import { colors } from '../../constants/theme';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -25,7 +26,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     loadItems();
-  }, []);
+  }, [loadItems]);
 
   const handleNewDubbing = useCallback(() => {
     useDubbingStore.getState().resetDubbingFlow();
@@ -79,7 +80,7 @@ export default function HomeScreen() {
       {/* 로딩 */}
       {loading && items.length === 0 ? (
         <View style={styles.loaderContainer}>
-          <ActivityIndicator size="large" color="#2563EB" />
+          <ActivityIndicator size="large" color={colors.primary} />
         </View>
       ) : (
         <FlatList
@@ -91,7 +92,7 @@ export default function HomeScreen() {
           contentContainerStyle={items.length === 0 ? styles.emptyList : styles.listContent}
           ListEmptyComponent={renderEmpty}
           refreshControl={
-            <RefreshControl refreshing={loading} onRefresh={loadItems} tintColor="#2563EB" />
+            <RefreshControl refreshing={loading} onRefresh={loadItems} tintColor={colors.primary} />
           }
           ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
         />
@@ -114,7 +115,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
   },
   header: {
     flexDirection: 'row',
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '600',
     lineHeight: 28,
-    color: '#0F172A',
+    color: colors.slate900,
   },
   avatar: {
     width: 32,
@@ -138,20 +139,20 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: '#EFF6FF',
+    backgroundColor: colors.primaryLight,
     justifyContent: 'center',
     alignItems: 'center',
   },
   avatarText: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#2563EB',
+    color: colors.primary,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
     lineHeight: 24,
-    color: '#0F172A',
+    color: colors.slate900,
     paddingHorizontal: 24,
     marginBottom: 12,
   },
@@ -174,17 +175,17 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#0F172A',
+    color: colors.slate900,
     marginBottom: 4,
   },
   emptySubtitle: {
     fontSize: 13,
-    color: '#64748B',
+    color: colors.slate500,
   },
   errorContainer: {
     marginHorizontal: 24,
     marginBottom: 12,
-    backgroundColor: '#FEF2F2',
+    backgroundColor: colors.errorBg,
     padding: 16,
     borderRadius: 12,
     flexDirection: 'row',
@@ -193,13 +194,13 @@ const styles = StyleSheet.create({
   },
   errorText: {
     fontSize: 13,
-    color: '#EF4444',
+    color: colors.error,
     flex: 1,
   },
   retryText: {
     fontSize: 13,
     fontWeight: '600',
-    color: '#2563EB',
+    color: colors.primary,
     marginLeft: 12,
   },
   loaderContainer: {
@@ -214,7 +215,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 16,
-    backgroundColor: '#2563EB',
+    backgroundColor: colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: 'rgba(37, 99, 235, 0.3)',
@@ -225,7 +226,7 @@ const styles = StyleSheet.create({
   },
   fabIcon: {
     fontSize: 28,
-    color: '#FFFFFF',
+    color: colors.white,
     fontWeight: '400',
     lineHeight: 28,
   },

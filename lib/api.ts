@@ -4,7 +4,7 @@
 
 import axios, { AxiosError } from 'axios';
 import Constants from 'expo-constants';
-import { getAccessToken } from './auth';
+import { getAccessToken, signOut } from './auth';
 import type {
   ApiError,
   CreateDubbingRequest,
@@ -43,7 +43,8 @@ api.interceptors.response.use(
       const detail = error.response.data?.detail ?? '알 수 없는 오류가 발생했습니다.';
 
       if (status === 401) {
-        // 인증 만료 처리는 스토어에서 세션 리스너가 담당
+        // 인증 만료 → 자동 로그아웃 후 세션 리스너가 auth 그룹으로 리다이렉트
+        signOut().catch(() => {});
         return Promise.reject(new Error('인증이 만료되었습니다. 다시 로그인해 주세요.'));
       }
       return Promise.reject(new Error(detail));

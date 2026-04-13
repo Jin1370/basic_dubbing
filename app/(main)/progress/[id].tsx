@@ -2,7 +2,7 @@
 // 더빙 진행 상태 화면 — 폴링으로 상태 업데이트
 // ============================================================
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -18,6 +18,7 @@ import { fetchDubbingProgress } from '../../../lib/api';
 import { DUBBING_STEP_LABELS, DUBBING_STEPS_ORDER } from '../../../lib/types';
 import type { DubbingProgress } from '../../../lib/types';
 import ProgressBar from '../../../components/ProgressBar';
+import { colors } from '../../../constants/theme';
 
 const POLL_INTERVAL_MS = 3000;
 
@@ -29,7 +30,7 @@ export default function ProgressScreen() {
   const [error, setError] = useState<string | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const startPolling = () => {
+  const startPolling = useCallback(() => {
     if (intervalRef.current) return;
 
     const poll = async () => {
@@ -55,7 +56,7 @@ export default function ProgressScreen() {
 
     poll(); // 즉시 한 번 호출
     intervalRef.current = setInterval(poll, POLL_INTERVAL_MS);
-  };
+  }, [id, router]);
 
   const stopPolling = () => {
     if (intervalRef.current) {
@@ -80,7 +81,7 @@ export default function ProgressScreen() {
       stopPolling();
       subscription.remove();
     };
-  }, [id]);
+  }, [id, startPolling]);
 
   const handleGoHome = () => {
     stopPolling();
@@ -104,7 +105,7 @@ export default function ProgressScreen() {
       <View style={styles.content}>
         {/* 애니메이션 아이콘 (Lottie 대체: 스피너) */}
         <View style={styles.animationContainer}>
-          <ActivityIndicator size="large" color="#2563EB" />
+          <ActivityIndicator size="large" color={colors.primary} />
         </View>
 
         <Text style={styles.statusText}>AI가 더빙을 생성 중입니다</Text>
@@ -189,7 +190,7 @@ export default function ProgressScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
   },
   header: {
     paddingHorizontal: 24,
@@ -199,7 +200,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '600',
     lineHeight: 28,
-    color: '#0F172A',
+    color: colors.slate900,
   },
   content: {
     flex: 1,
@@ -216,7 +217,7 @@ const styles = StyleSheet.create({
   },
   statusText: {
     fontSize: 16,
-    color: '#0F172A',
+    color: colors.slate900,
     textAlign: 'center',
     marginBottom: 32,
   },
@@ -224,7 +225,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     lineHeight: 24,
-    color: '#0F172A',
+    color: colors.slate900,
     textAlign: 'center',
     marginBottom: 16,
   },
@@ -234,7 +235,7 @@ const styles = StyleSheet.create({
   },
   percentText: {
     fontSize: 16,
-    color: '#0F172A',
+    color: colors.slate900,
     textAlign: 'center',
     marginTop: 8,
   },
@@ -245,7 +246,7 @@ const styles = StyleSheet.create({
   stepsLabel: {
     fontSize: 13,
     fontWeight: '500',
-    color: '#475569',
+    color: colors.slate600,
     marginBottom: 8,
   },
   stepRow: {
@@ -262,30 +263,30 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
   stepDone: {
-    color: '#22C55E',
+    color: colors.success,
   },
   stepActive: {
-    color: '#2563EB',
+    color: colors.primary,
     fontWeight: '600',
   },
   stepPending: {
-    color: '#94A3B8',
+    color: colors.slate400,
   },
   remainingText: {
     fontSize: 13,
-    color: '#64748B',
+    color: colors.slate500,
     textAlign: 'center',
     marginTop: 16,
   },
   errorContainer: {
     marginTop: 16,
-    backgroundColor: '#FEF2F2',
+    backgroundColor: colors.errorBg,
     padding: 12,
     borderRadius: 10,
   },
   errorText: {
     fontSize: 13,
-    color: '#EF4444',
+    color: colors.error,
   },
   bottomBar: {
     paddingHorizontal: 24,
@@ -295,14 +296,14 @@ const styles = StyleSheet.create({
     height: 48,
     borderRadius: 12,
     borderWidth: 1.5,
-    borderColor: '#2563EB',
-    backgroundColor: '#FFFFFF',
+    borderColor: colors.primary,
+    backgroundColor: colors.white,
     justifyContent: 'center',
     alignItems: 'center',
   },
   backgroundButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#2563EB',
+    color: colors.primary,
   },
 });

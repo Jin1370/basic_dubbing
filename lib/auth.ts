@@ -17,7 +17,7 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
  * 모바일 환경에서는 redirectTo를 Expo AuthSession redirect URI로 설정한다.
  */
 export async function signInWithGoogle(): Promise<void> {
-  const redirectTo = AuthSession.makeRedirectUri({ useProxy: true });
+  const redirectTo = AuthSession.makeRedirectUri();
 
   const { error } = await supabase.auth.signInWithOAuth({
     provider: 'google',

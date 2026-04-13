@@ -10,9 +10,9 @@ import {
   StyleSheet,
   Alert,
   SafeAreaView,
-  Image,
 } from 'react-native';
 import { signInWithGoogle } from '../../lib/auth';
+import { colors } from '../../constants/theme';
 
 export default function LoginScreen() {
   const [loading, setLoading] = useState(false);
@@ -72,7 +72,7 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
   },
   content: {
     flex: 1,
@@ -87,20 +87,20 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 28,
-    backgroundColor: '#2563EB',
+    backgroundColor: colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
   },
   logoText: {
     fontSize: 48,
     fontWeight: '700',
-    color: '#FFFFFF',
+    color: colors.white,
   },
   title: {
     fontSize: 28,
     fontWeight: '700',
     lineHeight: 36,
-    color: '#0F172A',
+    color: colors.slate900,
     textAlign: 'center',
     marginBottom: 8,
   },
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
     lineHeight: 24,
-    color: '#64748B',
+    color: colors.slate500,
     textAlign: 'center',
     marginBottom: 40,
   },
@@ -118,17 +118,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     height: 48,
-    backgroundColor: '#2563EB',
+    backgroundColor: colors.primary,
     borderRadius: 12,
     paddingHorizontal: 24,
   },
   googleButtonDisabled: {
-    backgroundColor: '#94A3B8',
+    backgroundColor: colors.slate400,
   },
   googleIcon: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#FFFFFF',
+    color: colors.white,
     marginRight: 8,
     backgroundColor: 'rgba(255,255,255,0.2)',
     width: 28,
@@ -142,13 +142,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     lineHeight: 20,
-    color: '#FFFFFF',
+    color: colors.white,
   },
   terms: {
     fontSize: 13,
     fontWeight: '400',
     lineHeight: 18,
-    color: '#64748B',
+    color: colors.slate500,
     textAlign: 'center',
     marginTop: 16,
   },

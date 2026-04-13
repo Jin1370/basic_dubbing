@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import type { LanguageCode } from '../lib/types';
 import { LANGUAGE_LABELS } from '../lib/types';
+import { colors } from '../constants/theme';
 
 interface LanguageSelectorProps {
   value: LanguageCode;
@@ -94,9 +95,9 @@ export default function LanguageSelector({
 const styles = StyleSheet.create({
   trigger: {
     height: 48,
-    backgroundColor: '#F8FAFC',
+    backgroundColor: colors.slate50,
     borderWidth: 1.5,
-    borderColor: '#E2E8F0',
+    borderColor: colors.slate200,
     borderRadius: 10,
     paddingHorizontal: 16,
     flexDirection: 'row',
@@ -105,11 +106,11 @@ const styles = StyleSheet.create({
   },
   triggerText: {
     fontSize: 16,
-    color: '#0F172A',
+    color: colors.slate900,
   },
   arrow: {
     fontSize: 12,
-    color: '#64748B',
+    color: colors.slate500,
   },
   overlay: {
     flex: 1,
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   sheet: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 24,
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
   handleBar: {
     width: 40,
     height: 4,
-    backgroundColor: '#CBD5E1',
+    backgroundColor: colors.slate300,
     borderRadius: 2,
     alignSelf: 'center',
     marginBottom: 16,
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
   sheetTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#0F172A',
+    color: colors.slate900,
     marginBottom: 16,
   },
   option: {
@@ -147,18 +148,18 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   optionSelected: {
-    backgroundColor: '#EFF6FF',
+    backgroundColor: colors.primaryLight,
   },
   optionText: {
     fontSize: 16,
-    color: '#0F172A',
+    color: colors.slate900,
   },
   optionTextSelected: {
-    color: '#2563EB',
+    color: colors.primary,
     fontWeight: '600',
   },
   checkIcon: {
     fontSize: 18,
-    color: '#2563EB',
+    color: colors.primary,
   },
 });
